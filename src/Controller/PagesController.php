@@ -45,6 +45,6 @@ class PagesController extends AppController
      */
     public function display(...$path): ?Response
     {
-        return $this->response;
+        $this->render('home');
     }
 }
