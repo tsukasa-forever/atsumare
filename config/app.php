@@ -7,6 +7,8 @@ use Cake\Error\ExceptionRenderer;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 
+$database_info = parse_url(getenv('DATABASE_URL'));
+
 return [
     /*
      * Debug Level:
@@ -271,7 +273,7 @@ return [
          */
         'default' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            'driver' => Cake\Database\Driver\Postgres::class,
             'persistent' => false,
             'timezone' => 'UTC',
 
@@ -288,6 +290,16 @@ return [
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
+            'host' => $database_info['host'],
+            /*
+             * CakePHP will use the default DB port based on the driver selected
+             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
+             * the following line and set the port accordingly
+             */
+            'port' => $database_info['port'],
+            'username' => $database_info['user'],
+            'password' => $database_info['pass'],
+            'database' => substr($database_info['path'], 1),
 
             /*
              * Set identifier quoting to true if you are using reserved words or
