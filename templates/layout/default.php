@@ -21,12 +21,11 @@
         </div>
         <div class="collapse navbar-collapse" id="navigation">
             <?php if (isset($current_user)): ?>
-            <p class="navbar-text navbar-right"><a href="https://slack.com/oauth/authorize?scope=identity.basic identity.team identity.avatar&client_id=<%= @client_id %>&redirect_uri=https://mokmok-aldytsukasa.c9users.io/signin_with_slack" style="color: white!important;">違うアカウントでログインする</a></a></p>
+            <p class="navbar-text navbar-right"><a href="/users/logout" style="color: white!important;">違うアカウントでログインする</a></a></p>
             <p class="navbar-text navbar-right" style="color: white"><?= $current_user_name ?> さんこんにちは</p>
             <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" src="<?= $current_user_image ?>"></i></a>
             <?php else: ?>
-            <p class="navbar-text navbar-right"><a href="https://slack.com/oauth/authorize?scope=identity.basic identity.team identity.avatar&client_id=<%= @client_id %>&redirect_uri=https://mokmok-aldytsukasa.c9users.io/signin_with_slack" style="color: white!important;">ログインする</a></p>
-            <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"> <i class="fas fa-user-alt"></i></a>
+            <p class="navbar-text navbar-right"><a href="/users/login" style="color: white!important;">ログインする</a></p>
             <?php endif; ?>
         </div>
     </div>
