@@ -8,6 +8,6 @@ use App\Model\Entity\Mokmok;
 ?>
 <div class="container">
     <?php foreach ($mokmoks as $mokmok): ?>
-    <h1><?= $mokmok->title ?></h1>
+    <h1><?= $mokmok->name ?></h1>
     <?php endforeach; ?>
 </div>

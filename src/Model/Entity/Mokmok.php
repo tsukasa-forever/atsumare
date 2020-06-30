@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
 
 /**
  * @property int $id
- * @property string $title
+ * @property string $name
  */
 class Mokmok extends Entity
 {
