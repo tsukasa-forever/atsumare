@@ -53,6 +53,7 @@ return [
              * set it here.
              */
             //'schema' => 'myapp',
+            'driver' => Cake\Database\Driver\Mysql::class,
 
             /**
              * You can use a DSN string to set the entire configuration
