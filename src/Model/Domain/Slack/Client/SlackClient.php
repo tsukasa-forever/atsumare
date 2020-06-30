@@ -6,6 +6,7 @@ namespace App\Model\Domain\Slack\Client;
 
 
 use App\Model\Domain\Slack\InteractiveMessage\Dialog;
+use App\Model\Entity\SlackUser;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
 
@@ -55,14 +56,31 @@ class SlackClient
         return sprintf("https://slack.com/oauth/v2/authorize?scope=%s&client_id=%s&redirect_uri=%s", $scope, self::BOT_CLIENT_ID, self::AUTH_REDIRECT_URI);
     }
 
-    public function getAuthData(string $code)
+    private function getAuthData(string $code)
     {
-        $res = $this->client->post(self::OPEN_DIALOG_URL, [
+        $res = $this->client->post("https://slack.com/api/oauth.v2.access", [
             'code' => $code,
             'client_id' => self::BOT_CLIENT_ID,
             'client_secret' => self::BOT_CLIENT_SECRET,
             'redirect_uri' => self::AUTH_REDIRECT_URI
         ]);
         return $res;
+    }
+
+    /**
+     * @param string $code
+     * @return SlackUser
+     */
+    public function getAuthedUser(string $code)
+    {
+        $data = $this->getAuthData($code)->getJson();
+
+        $token = $data['access_token'];
+        $user_id = $data['authed_user']['id'];
+        $data = $this->client->post("https://slack.com/api/users.info", [
+            'token' => $token,
+            'user' => $user_id,
+        ])->getJson();
+        return new SlackUser($data['user']);
     }
 }

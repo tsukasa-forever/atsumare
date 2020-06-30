@@ -16,7 +16,11 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Model\Entity\User;
+use App\Model\Table\UsersTable;
 use Cake\Controller\Controller;
+use Cake\Http\Session;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -25,9 +29,15 @@ use Cake\Controller\Controller;
  * will inherit them.
  *
  * @link https://book.cakephp.org/4/en/controllers.html#the-app-controller
+ * @property Session $Session
  */
 class AppController extends Controller
 {
+
+    /** @var User|null */
+    public $current_user;
+    /** @var UsersTable */
+    private $Users;
     /**
      * Initialization hook method.
      *
@@ -44,6 +54,18 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+        session_start();
+        $this->Session = $this->request->getSession();
+
+        $user_id = $this->Session->read('user_id');
+
+        $this->current_user = null;
+        if ($user_id) {
+            $this->Users = TableRegistry::getTableLocator()->get("Users");
+            $this->current_user = $this->Users->getByUId($user_id);
+        }
+        $this->set('current_user', $this->current_user);
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

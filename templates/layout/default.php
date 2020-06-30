@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var User $current_user
+ */
+
+//var_dump($current_user);
+use App\Model\Entity\User; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -22,8 +29,8 @@
         <div class="collapse navbar-collapse" id="navigation">
             <?php if (isset($current_user)): ?>
             <p class="navbar-text navbar-right"><a href="/users/logout" style="color: white!important;">違うアカウントでログインする</a></a></p>
-            <p class="navbar-text navbar-right" style="color: white"><?= $current_user_name ?> さんこんにちは</p>
-            <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" src="<?= $current_user_image ?>"></i></a>
+            <p class="navbar-text navbar-right" style="color: white"><?= $current_user->name ?> さんこんにちは</p>
+            <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" src="<?= $current_user->image ?>"></i></a>
             <?php else: ?>
             <p class="navbar-text navbar-right"><a href="/users/login" style="color: white!important;">ログインする</a></p>
             <?php endif; ?>

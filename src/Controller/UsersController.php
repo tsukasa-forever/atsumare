@@ -17,10 +17,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Domain\Slack\Client\SlackClient;
+use App\Model\Table\UsersTable;
 use Cake\Log\Log;
 
 /**
- *
+ * @property UsersTable $Users
  */
 class UsersController extends AppController
 {
@@ -33,23 +34,39 @@ class UsersController extends AppController
         $this->slack_client = new SlackClient();
     }
 
-    public function index()
-    {
-        $this->autoRender = false;
-        echo $this->slack_client->getAuthUrl("users:read");
-    }
-
     public function login()
     {
+        if (isset($this->current_user)) {
+            return $this->redirect("/");
+        }
+
         $code = $this->request->getQuery('code');
 
         if (empty($code)) {
             return $this->redirect($this->slack_client->getAuthUrl("users:read"));
         }
 
-        $data = $this->slack_client->getAuthData($code);
+        $slack_user = $this->slack_client->getAuthedUser($code);
 
-        var_dump(json_encode($data->getJson()['authed_user']));
-        var_dump(json_encode($data->getJson()));
+        $user = $this->Users->getByUId($slack_user->id);
+        if (!isset($user)) {
+            $user = $this->Users->newEntity([
+                'u_id' => $slack_user->id,
+                'team_id' => $slack_user->team_id,
+                'name' => $slack_user->real_name,
+                'image_url' => $slack_user->image_url
+            ]);
+            $this->Users->save($user);
+        }
+
+        $this->Session->write('user_id', $user->u_id);
+        return $this->redirect('/');
+    }
+
+
+    public function logout()
+    {
+        $this->Session->write('user_id', null);
+        return $this->redirect("/users/login");
     }
 }

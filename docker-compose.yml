@@ -44,7 +44,7 @@ services:
       TZ: 'Asia/Tokyo'
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/conf.d/tanp.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/sql:/docker-entrypoint-initdb.d
 
 networks:
