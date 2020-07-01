@@ -37,7 +37,7 @@ class AppController extends Controller
     /** @var User|null */
     public $current_user;
     /** @var UsersTable */
-    private $Users;
+    public $Users;
     /**
      * Initialization hook method.
      *

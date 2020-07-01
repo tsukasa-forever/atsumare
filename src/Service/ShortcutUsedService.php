@@ -32,7 +32,7 @@ class ShortcutUsedService extends AppService
         $this->callback_id = $payload->callback_id;
         $this->trigger_id = $payload->trigger_id;
 
-        $this->SlackService = new MokmoksService();
+        $this->SlackService = new SlackService();
         $this->slack_client = new SlackClient();
     }
 

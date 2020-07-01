@@ -24,20 +24,20 @@ use App\Model\Entity\User; ?>
 <nav class="navbar" style=";border-radius: 0;margin: 0;background: #F57C00">
     <div class="container-fluid container">
         <div class="navbar-header">
-            <a class="navbar-brand" style="color: white;font-weight:800;font-size: 24px" href="/">MokMok</a>
+            <a class="navbar-brand" style="color: white;font-weight:800;font-size: 24px;padding-left: 0" href="/">MokMok</a>
         </div>
         <div class="collapse navbar-collapse" id="navigation">
             <?php if (isset($current_user)): ?>
             <p class="navbar-text navbar-right"><a href="/users/logout" style="color: white!important;">違うアカウントでログインする</a></a></p>
             <p class="navbar-text navbar-right" style="color: white"><?= $current_user->name ?> さんこんにちは</p>
-            <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" src="<?= $current_user->image ?>"></i></a>
+            <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" style="width: 30px" src="<?= $current_user->image_url ?>"></i></a>
             <?php else: ?>
             <p class="navbar-text navbar-right"><a href="/users/login" style="color: white!important;">ログインする</a></p>
             <?php endif; ?>
         </div>
     </div>
 </nav>
-<div style="padding-bottom: 200px">
+<div style="padding-bottom: 200px;padding-left: 0;padding-right: 0" class="container-fluid container">
     <?= $this->Flash->render() ?>
     <?= $this->fetch('content') ?>
 </body>

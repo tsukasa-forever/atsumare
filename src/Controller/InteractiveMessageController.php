@@ -51,10 +51,10 @@ class InteractiveMessageController extends AppController
         $payload = json_decode($this->request->getData('payload'));
 
 
-        $this->DialogSubmissionService = new DialogSubmissionService($payload);
         $type = $payload->type;
         $callback_id = $payload->callback_id;
         if ($type === "dialog_submission") {
+            $this->DialogSubmissionService = new DialogSubmissionService($payload);
             $this->DialogSubmissionService->callback();
             return $this->response;
         }

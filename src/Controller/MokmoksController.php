@@ -16,32 +16,30 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use App\Model\Domain\Slack\Client\SlackClient;
-use App\Model\Domain\Slack\InteractiveMessage\Dialog;
 use App\Model\Table\MokmoksTable;
-use Cake\Log\Log;
+use App\Model\Table\UsersTable;
+use Cake\ORM\TableRegistry;
 
 /**
  * @property MokmoksTable $Mokmoks
  */
 class MokmoksController extends AppController
 {
+    /** @var UsersTable */
+    public $Users;
+
     public function index()
     {
         $mokmoks = $this->Mokmoks->find()->all();
         $this->set(compact("mokmoks"));
+        $this->Users = TableRegistry::getTableLocator()->get('Users');
     }
 
-    public function slackModal()
+    public function view($id)
     {
-        $this->autoRender = false;
-        Log::write('error', json_encode($this->request->getData()));
-
-        $token = $this->request->getData('token');// trigger_id
-        $trigger_id = $this->request->getData('trigger_id');
-        $dialog = $this->SlackService->getNewMokmokDialog();;
-
-        $slack_client = new SlackClient();
-
+        $mokmok = $this->Mokmoks->get($id);
+        $creator = $this->Users->getByUId($mokmok->user_id);
+        $members = [];
+        $this->set(compact('mokmok', 'creator', 'members'));
     }
 }

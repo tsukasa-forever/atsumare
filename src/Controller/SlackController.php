@@ -42,18 +42,4 @@ class SlackController extends AppController
         $challenge = $this->request->getData('challenge');
         return $this->response->withStringBody($challenge);
     }
-
-    public function newMokmokDialog()
-    {
-        $this->autoRender = false;
-
-        $trigger_id = $this->request->getData('trigger_id');
-        $dialog = $this->SlackService->getNewMokmokDialog();
-
-        $slack_client = new SlackClient();
-        $res = $slack_client->openDialog($trigger_id, $dialog);
-
-        Log::write('error', json_encode($res->getJson()));
-
-    }
 }
