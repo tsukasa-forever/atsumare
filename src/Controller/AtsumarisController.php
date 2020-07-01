@@ -62,4 +62,29 @@ class AtsumarisController extends AppController
         $members = [];
         $this->set(compact('atsumari', 'creator', 'members'));
     }
+
+    public function edit($id) {
+        if (!isset($this->current_user)) {
+            $this->Flash->error('ログインしてください');
+            return $this->redirect("/");
+        }
+
+        /** @var Atsumari $atsumari */
+        $atsumari = $this->Atsumaris->get($id);
+        $creator = $this->Users->getByUId($atsumari->user_id);
+
+        if ($this->current_user->id !== $creator->id) {
+            throw new NotFoundException();
+        }
+        $this->set(compact('atsumari'));
+
+        if ($this->request->is('post')) {
+            $data =  $this->request->getData();
+            $data['start_time'] = "20:00:00";
+            $data['end_time'] = "20:00:00";
+            $this->Atsumaris->patchEntity($atsumari, $this->request->getData());
+            $this->Atsumaris->save($atsumari);
+            $this->redirect("/atsumaris/view/".$atsumari->id);
+        }
+    }
 }

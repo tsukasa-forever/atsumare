@@ -14,7 +14,7 @@ use App\Model\Entity\User; ?>
         <p class="mokmokInfo__place"><?= $atsumari->date->format("Y/m/d") ?> <?= $atsumari->start_time->format('H:i') ?> ~ <?= $atsumari->end_time->format('H:i') ?> @<?= $atsumari->place ?></p>
         <p class="mokmokInfo__desc"><?= nl2br($atsumari->description) ?></p>
         <div class="mokmokInfo__btnContainer">
-            <a href="/mokmoks/participate/<%= @mokmok.id %>?redirect_url=/mokmoks/view/<?= $atsumari->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
+            <a href="/atsumaris/newMember?redirect_url=/atsumaris/view/<?= $atsumari->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
         </div>
     </div>
 
@@ -25,7 +25,7 @@ use App\Model\Entity\User; ?>
                 <img class="memberCord__img" src="<?= $creator->image_url ?>">
                 <p class="memberCord__name"><?= $creator->name ?></p>
                 <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
-                <a href="/mokmoks/edit/<?= $atsumari->id ?>">編集する</a>
+                <a href="/atsumaris/edit/<?= $atsumari->id ?>">編集する</a>
                 <?php endif; ?>
             </div>
             <p class="memberCord__role">Atsumari Members</p>
