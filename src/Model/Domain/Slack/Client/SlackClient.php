@@ -75,7 +75,7 @@ class SlackClient
     public function getAuthedUser(string $code)
     {
         $data = $this->getAuthData($code)->getJson();
-
+        Log::error(json_encode($data));
         $token = $data['access_token'];
         $user_id = $data['authed_user']['id'];
         $data = $this->client->post("https://slack.com/api/users.info", [

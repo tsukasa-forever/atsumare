@@ -24,7 +24,6 @@ use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use JsonSchema\Exception\ResourceNotFoundException;
 
-
 /**
  * @property AtsumarisTable $Atsumaris
  */
