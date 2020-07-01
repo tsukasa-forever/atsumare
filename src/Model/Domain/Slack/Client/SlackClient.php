@@ -9,6 +9,7 @@ use App\Model\Domain\Slack\InteractiveMessage\Dialog;
 use App\Model\Entity\SlackUser;
 use Cake\Http\Client;
 use Cake\Http\Client\Response;
+use Cake\Log\Log;
 
 define('BOT_TOKEN', env('BOT_TOKEN'));
 define('BOT_CLIENT_ID', env('BOT_CLIENT_ID'));
@@ -82,5 +83,20 @@ class SlackClient
             'user' => $user_id,
         ])->getJson();
         return new SlackUser($data['user']);
+    }
+
+    /**
+     * @param string $user_id
+     * @param string $message
+     * @return Response
+     */
+    public function sendDM(string $user_id, string $message)
+    {
+        $res = $this->client->post("https://slack.com/api/chat.postMessage", [
+            'token' => self::BOT_TOKEN,
+            'channel' => $user_id,
+            'text' => $message
+        ]);
+        return $res;
     }
 }

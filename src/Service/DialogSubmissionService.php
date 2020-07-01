@@ -3,6 +3,7 @@
 
 namespace App\Service;
 
+use App\Model\Domain\Slack\Client\SlackClient;
 use Cake\Log\Log;
 
 class DialogSubmissionService extends AppService
@@ -15,8 +16,11 @@ class DialogSubmissionService extends AppService
     private $action_ts;
     private $callback_id;
 
-    /** @var MokmoksService */
-    private $MokMoksService;
+    /** @var AtsumarisService */
+    private $AtsumarisService;
+
+    /** @var SlackClient */
+    private $slack_client;
 
     public function __construct($payload)
     {
@@ -29,21 +33,25 @@ class DialogSubmissionService extends AppService
         $this->action_ts = $payload->action_ts;
         $this->callback_id = $payload->callback_id;
 
-        $this->MokMoksService = new MokmoksService();
+        $this->AtsumarisService = new AtsumarisService();
+        $this->slack_client = new SlackClient();
     }
 
     public function callback()
     {
-        if ($this->callback_id === "create_mokmok") {
-            $this->MokMoksService->create(
+        if ($this->callback_id === "create_atsumari") {
+            $atumari = $this->AtsumarisService->create(
                 $this->team_id,
                 $this->user_id,
                 $this->submission->title,
+                $this->submission->place,
                 '',
                 $this->submission->date,
                 $this->submission->start_time,
                 $this->submission->end_time
             );
+
+            $this->slack_client->sendDM($this->user_id, sprintf("Atrumariを作成しました\n %s", $atumari->getDetailUrl()));
         }
     }
 

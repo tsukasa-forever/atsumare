@@ -18,7 +18,7 @@ namespace App\Controller;
 
 use App\Model\Domain\Slack\Client\SlackClient;
 use App\Model\Domain\Slack\InteractiveMessage\Dialog;
-use App\Model\Table\MokmoksTable;
+use App\Model\Table\AtsumarisTable;
 use App\Service\DialogSubmissionService;
 use App\Service\InteractiveMessageStrategy;
 use App\Service\ShortcutUsedService;

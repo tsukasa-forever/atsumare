@@ -21,7 +21,7 @@ class SlackService extends AppService
      * @return Dialog
      * @throws
      */
-    public function getNewMokmokDialog()
+    public function getNewAtsumariDialog()
     {
         $title = new Text('Title', 'title', 'Go言語カクカク会');
         $place = new Text('Place', 'place', '渋谷のスタバ');
@@ -58,7 +58,7 @@ class SlackService extends AppService
             $end_time
         ];
 
-        $dialog = new Dialog('create_mokmok', 'new MOKMOK', 'Request', $elements);
+        $dialog = new Dialog('create_atsumari', 'new Atsumari', 'Request', $elements);
         return $dialog;
     }
 

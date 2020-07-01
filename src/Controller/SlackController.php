@@ -16,14 +16,10 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use App\Model\Domain\Slack\Client\SlackClient;
-use App\Model\Domain\Slack\InteractiveMessage\Dialog;
-use App\Model\Table\MokmoksTable;
 use App\Service\SlackService;
-use Cake\Log\Log;
 
 /**
- * @property MokmoksTable $Mokmoks
+ *
  */
 class SlackController extends AppController
 {

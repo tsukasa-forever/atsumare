@@ -38,9 +38,9 @@ class ShortcutUsedService extends AppService
 
     public function callback()
     {
-        if ($this->callback_id === "new_mokmok_dialog") {
-            $dialog = $this->SlackService->getNewMokmokDialog();
-            $this->slack_client->openDialog($this->trigger_id, $dialog);
+        if ($this->callback_id == "new_atsumari_dialog") {
+            $dialog = $this->SlackService->getNewAtsumariDialog();
+            $res = $this->slack_client->openDialog($this->trigger_id, $dialog);
         }
     }
 

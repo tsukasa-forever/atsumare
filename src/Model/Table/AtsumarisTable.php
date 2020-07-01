@@ -4,7 +4,7 @@
 namespace App\Model\Table;
 
 
-class MokmoksTable extends AppTable
+class AtsumarisTable extends AppTable
 {
     public function initialize(array $config): void
     {
@@ -12,18 +12,19 @@ class MokmoksTable extends AppTable
         $this->addBehavior('Timestamp');
     }
 
-    public function create(string $team_id, string $user_id, string $name, string $description, string $date, string $start_time, string $end_time)
+    public function create(string $team_id, string $user_id, string $name, string $place, string $description, string $date, string $start_time, string $end_time)
     {
-        $mokmok = $this->newEntity([
+        $atsumari = $this->newEntity([
             'team_id' => $team_id,
             'name' => $name,
             'description' => $description,
             'user_id' => $user_id,
+            'place' => $place,
             'date' => new \DateTimeImmutable($date),
             'start_time' => $start_time,
             'end_time' => $end_time
         ]);
-        $this->save($mokmok);
-        return $mokmok;
+        $this->save($atsumari);
+        return $atsumari;
     }
 }

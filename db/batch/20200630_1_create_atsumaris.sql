@@ -1,4 +1,4 @@
-CREATE TABLE `mokmoks` (
+CREATE TABLE `atsumaris` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -9,5 +9,6 @@ CREATE TABLE `mokmoks` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `place` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );

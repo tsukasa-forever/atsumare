@@ -1,34 +1,34 @@
 <?php
 /**
  * @var User $current_user
- * @var Mokmok $mokmok
+ * @var Atsumari $atsumari
  * @var User $creator
  * @var User[] $members
  */
 
-use App\Model\Entity\Mokmok;
+use App\Model\Entity\Atsumari;
 use App\Model\Entity\User; ?>
     <div class="mokmokInfo">
-        <p class="mokmokInfo__bar">This MokMok</p>
-        <p class="mokmokInfo__title"><?= $mokmok->name ?></p>
-        <p class="mokmokInfo__place"><?= $mokmok->date->format("Y/m/d") ?> <?= $mokmok->start_time->format('H:i') ?> ~ <?= $mokmok->end_time->format('H:i') ?> @<?= $mokmok->place ?></p>
-        <p class="mokmokInfo__desc"><?= nl2br($mokmok->description) ?></p>
+        <p class="mokmokInfo__bar">This Atsumari</p>
+        <p class="mokmokInfo__title"><?= $atsumari->name ?></p>
+        <p class="mokmokInfo__place"><?= $atsumari->date->format("Y/m/d") ?> <?= $atsumari->start_time->format('H:i') ?> ~ <?= $atsumari->end_time->format('H:i') ?> @<?= $atsumari->place ?></p>
+        <p class="mokmokInfo__desc"><?= nl2br($atsumari->description) ?></p>
         <div class="mokmokInfo__btnContainer">
-            <a href="/mokmoks/participate/<%= @mokmok.id %>?redirect_url=/mokmoks/view/<?= $mokmok->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
+            <a href="/mokmoks/participate/<%= @mokmok.id %>?redirect_url=/mokmoks/view/<?= $atsumari->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
         </div>
     </div>
 
     <div>
         <div class="memnbersContainer">
-            <p class="memberCord__role">MokMok Creator</p>
+            <p class="memberCord__role">Atsumari Creator</p>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $creator->image_url ?>">
                 <p class="memberCord__name"><?= $creator->name ?></p>
-                <?php if ($current_user->id === $creator->id): ?>
-                <a href="/mokmoks/edit/<?= $mokmok->id ?>">編集する</a>
+                <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
+                <a href="/mokmoks/edit/<?= $atsumari->id ?>">編集する</a>
                 <?php endif; ?>
             </div>
-            <p class="memberCord__role">MokMok Members</p>
+            <p class="memberCord__role">Atsumari Members</p>
             <?php foreach ($members as $member): ?>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $member->image_url ?>">

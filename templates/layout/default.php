@@ -9,7 +9,7 @@ use App\Model\Entity\User; ?>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>MokMok もくもくしよう</title>
+    <title>Atsumare | 集まろう</title>
     <link rel="shortcut icon" href="favicon.ico" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -24,7 +24,7 @@ use App\Model\Entity\User; ?>
 <nav class="navbar" style=";border-radius: 0;margin: 0;background: #F57C00">
     <div class="container-fluid container">
         <div class="navbar-header">
-            <a class="navbar-brand" style="color: white;font-weight:800;font-size: 24px;padding-left: 0" href="/">MokMok</a>
+            <a class="navbar-brand" style="color: white;font-weight:800;font-size: 24px;padding-left: 0" href="/">Atsumare</a>
         </div>
         <div class="collapse navbar-collapse" id="navigation">
             <?php if (isset($current_user)): ?>
