@@ -12,11 +12,11 @@ class AtsumarisTable extends AppTable
         $this->addBehavior('Timestamp');
     }
 
-    public function create(string $team_id, string $user_id, string $name, string $place, string $description, string $date, string $start_time, string $end_time)
+    public function create(string $team_id, string $user_id, string $title, string $place, string $description, string $date, string $start_time, string $end_time)
     {
         $atsumari = $this->newEntity([
             'team_id' => $team_id,
-            'name' => $name,
+            'title' => $title,
             'description' => $description,
             'user_id' => $user_id,
             'place' => $place,

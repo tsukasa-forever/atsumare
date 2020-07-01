@@ -10,7 +10,7 @@ use App\Model\Entity\Atsumari;
 use App\Model\Entity\User; ?>
     <div class="mokmokInfo">
         <p class="mokmokInfo__bar">This Atsumari</p>
-        <p class="mokmokInfo__title"><?= $atsumari->name ?></p>
+        <p class="mokmokInfo__title"><?= $atsumari->title ?></p>
         <p class="mokmokInfo__place"><?= $atsumari->date->format("Y/m/d") ?> <?= $atsumari->start_time->format('H:i') ?> ~ <?= $atsumari->end_time->format('H:i') ?> @<?= $atsumari->place ?></p>
         <p class="mokmokInfo__desc"><?= nl2br($atsumari->description) ?></p>
         <div class="mokmokInfo__btnContainer">
@@ -23,7 +23,7 @@ use App\Model\Entity\User; ?>
             <p class="memberCord__role">Atsumari Creator</p>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $creator->image_url ?>">
-                <p class="memberCord__name"><?= $creator->name ?></p>
+                <p class="memberCord__name"><?= $creator->title ?></p>
                 <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
                 <a href="/atsumaris/edit/<?= $atsumari->id ?>">編集する</a>
                 <?php endif; ?>
@@ -32,7 +32,7 @@ use App\Model\Entity\User; ?>
             <?php foreach ($members as $member): ?>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $member->image_url ?>">
-                <p class="memberCord__name"><?= $member->name ?></p>
+                <p class="memberCord__name"><?= $member->title ?></p>
             </div>
             <?php endforeach; ?>
 

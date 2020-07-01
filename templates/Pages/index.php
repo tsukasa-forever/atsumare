@@ -10,7 +10,7 @@ use App\Model\Entity\Atsumari;
     <div class="atsumariCardContainer">
         <?php foreach ($atsumaris as $atsumari): ?>
         <a href="<?= $atsumari->getDetailUrl() ?>" class="atsumariCard">
-            <p class="atsumariCard__title"><?= $atsumari->name ?></p>
+            <p class="atsumariCard__title"><?= $atsumari->title ?></p>
             <p class="atsumariCard__datetime"><?= $atsumari->datetimeStr() ?></p>
         </a>
         <?php endforeach; ?>

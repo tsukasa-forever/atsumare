@@ -22,8 +22,8 @@ class AtsumarisService extends AppService
     /**
      * @return Atsumari
      */
-    public function create(string $team_id, string $user_id, string $name, string $place, string $description, string $date, string $start_time, string $end_time)
+    public function create(string $team_id, string $user_id, string $title, string $place, string $description, string $date, string $start_time, string $end_time)
     {
-        return $this->Atsumaris->create($team_id, $user_id, $name, $place, $description, $date, $start_time, $end_time);
+        return $this->Atsumaris->create($team_id, $user_id, $title, $place, $description, $date, $start_time, $end_time);
     }
 }

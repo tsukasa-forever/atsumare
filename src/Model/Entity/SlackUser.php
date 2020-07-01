@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
 /**
  * @property string $id
  * @property string $team_id
- * @property string $name
+ * @property string $title
  * @property string $real_name
  * @property string $image_url
  */

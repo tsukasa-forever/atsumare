@@ -13,7 +13,7 @@ use App\Model\Entity\User; ?>
             <p class="mokmokInfo__bar">This Atsumari</p>
 
             <label for="name" class="atsumariForm_label">タイトル</label><br>
-            <input type="text" class="atsumariForm_text" id="name" name="name" value="<?= $atsumari->name ?>"><br>
+            <input type="text" class="atsumariForm_text" id="name" name="name" value="<?= $atsumari->title ?>"><br>
 
             <label for="place" class="atsumariForm_label">場所</label><br>
             <input type="text" class="atsumariForm_text" name="place" id="place" value="<?= $atsumari->place ?>"><br>

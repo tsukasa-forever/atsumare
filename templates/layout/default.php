@@ -29,7 +29,7 @@ use App\Model\Entity\User; ?>
         <div class="collapse navbar-collapse" id="navigation">
             <?php if (isset($current_user)): ?>
             <p class="navbar-text navbar-right"><a href="/users/logout" style="color: white!important;">違うアカウントでログインする</a></a></p>
-            <p class="navbar-text navbar-right" style="color: white"><?= $current_user->name ?> さんこんにちは</p>
+            <p class="navbar-text navbar-right" style="color: white"><?= $current_user->title ?> さんこんにちは</p>
             <a href="/users/mypage" class="navbar-text navbar-right dropdown" style="color: white"><img class="nav_icon" style="width: 30px" src="<?= $current_user->image_url ?>"></i></a>
             <?php else: ?>
             <p class="navbar-text navbar-right"><a href="/users/login" style="color: white!important;">ログインする</a></p>

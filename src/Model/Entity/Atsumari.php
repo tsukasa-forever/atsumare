@@ -9,7 +9,7 @@ use DateTimeImmutable;
 
 /**
  * @property int $id
- * @property string $name
+ * @property string $title
  * @property string $place
  * @property string $description
  * @property DateTimeImmutable $date
