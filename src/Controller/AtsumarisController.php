@@ -20,6 +20,7 @@ use App\Model\Entity\Atsumari;
 use App\Model\Table\AtsumarisTable;
 use App\Model\Table\UsersTable;
 use Cake\Http\Exception\NotFoundException;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use JsonSchema\Exception\ResourceNotFoundException;
 
@@ -80,9 +81,9 @@ class AtsumarisController extends AppController
 
         if ($this->request->is('post')) {
             $data =  $this->request->getData();
-            $data['start_time'] = "20:00:00";
-            $data['end_time'] = "20:00:00";
-            $this->Atsumaris->patchEntity($atsumari, $this->request->getData());
+            $data['start_time'] .= ":00";
+            $data['end_time'] .= ":00";
+            $this->Atsumaris->patchEntity($atsumari, $data);
             $this->Atsumaris->save($atsumari);
             $this->redirect("/atsumaris/view/".$atsumari->id);
         }
