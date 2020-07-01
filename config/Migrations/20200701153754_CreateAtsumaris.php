@@ -56,7 +56,7 @@ class CreateAtsumaris extends AbstractMigration
             'null' => false,
         ]);
         $table->addColumn('date', 'date', [
-            'default' => '0000-00-00',
+            'default' => 'today',
             'null' => false,
         ]);
         $table->create();
