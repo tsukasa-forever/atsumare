@@ -53,7 +53,7 @@ class AtsumarisController extends AppController
         }
 
         /** @var Atsumari $atsumari */
-        $atsumari = $this->Atsumaris->get($id);
+        $atsumari = $this->Atsumaris->find()->where(['Atsumaris.id' => $id])->contain('Users')->first();
 
         if ($this->current_user->team_id !== $atsumari->team_id) {
             throw new NotFoundException();

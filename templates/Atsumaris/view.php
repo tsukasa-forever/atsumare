@@ -23,16 +23,16 @@ use App\Model\Entity\User; ?>
             <p class="memberCord__role">Atsumari Creator</p>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $creator->image_url ?>">
-                <p class="memberCord__name"><?= $creator->title ?></p>
+                <p class="memberCord__name"><?= $creator->name ?></p>
                 <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
                 <a href="/atsumaris/edit/<?= $atsumari->id ?>">編集する</a>
                 <?php endif; ?>
             </div>
             <p class="memberCord__role">Atsumari Members</p>
-            <?php foreach ($members as $member): ?>
+            <?php foreach ($atsumari->users as $user): ?>
             <div class="memberCord">
-                <img class="memberCord__img" src="<?= $member->image_url ?>">
-                <p class="memberCord__name"><?= $member->title ?></p>
+                <img class="memberCord__img" src="<?= $user->image_url ?>">
+                <p class="memberCord__name"><?= $user->name ?></p>
             </div>
             <?php endforeach; ?>
 

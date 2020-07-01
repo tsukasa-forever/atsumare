@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateUsersAtsumaris extends AbstractMigration
+class CreateAtsumarisUsers extends AbstractMigration
 {
     /**
      * Change Method.
@@ -14,7 +14,7 @@ class CreateUsersAtsumaris extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('users_atsumaris');
+        $table = $this->table('atsumaris_users');
         $table->addColumn('user_id', 'integer', [
             'default' => null,
             'null' => false,
