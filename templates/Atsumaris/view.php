@@ -11,10 +11,13 @@ use App\Model\Entity\User; ?>
     <div class="mokmokInfo">
         <p class="mokmokInfo__bar">This Atsumari</p>
         <p class="mokmokInfo__title"><?= $atsumari->title ?></p>
+        <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
+            <a class="mokmokInfo__editLink" href="/atsumaris/edit/<?= $atsumari->id ?>">集まりを編集する</a>
+        <?php endif; ?>
         <p class="mokmokInfo__place"><?= $atsumari->date->format("Y/m/d") ?> <?= $atsumari->start_time->format('H:i') ?> ~ <?= $atsumari->end_time->format('H:i') ?> @<?= $atsumari->place ?></p>
         <p class="mokmokInfo__desc"><?= nl2br($atsumari->description) ?></p>
         <div class="mokmokInfo__btnContainer">
-            <a href="/atsumaris/newMember?redirect_url=/atsumaris/view/<?= $atsumari->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
+            <a href="/atsumaris/newMember/<?= $atsumari->id ?>?redirect_url=/atsumaris/view/<?= $atsumari->id ?>"><div class="mokmokInfo__btn">参加する</div></a>
         </div>
     </div>
 
@@ -24,9 +27,7 @@ use App\Model\Entity\User; ?>
             <div class="memberCord">
                 <img class="memberCord__img" src="<?= $creator->image_url ?>">
                 <p class="memberCord__name"><?= $creator->name ?></p>
-                <?php if (isset($current_user) && $current_user->id === $creator->id): ?>
-                <a href="/atsumaris/edit/<?= $atsumari->id ?>">編集する</a>
-                <?php endif; ?>
+
             </div>
             <p class="memberCord__role">Atsumari Members</p>
             <?php foreach ($atsumari->users as $user): ?>
@@ -120,6 +121,11 @@ use App\Model\Entity\User; ?>
             padding: 10px;
             font-size: 20px;
             font-weight: bold;
+        }
 
+        .mokmokInfo__editLink {
+            text-align: right;
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
